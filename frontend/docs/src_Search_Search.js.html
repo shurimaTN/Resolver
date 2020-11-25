@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/Search/Search.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/Search/Search.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import ResponsiveContainer from "react-responsive-widget";
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import { CSVLink } from "react-csv";
+
+import axios from "axios";
+import CreateQRcode from "./Qrcodecreate";
+const API_URL = require("../const/api")() + "/get_product";
+
+const expandRow = {
+
+  renderer: (row, rowIndex) => (
+    &lt;div>
+      &lt;p>
+        {`DIGITAL LINK URI `}{" "}
+        {row.DigitalLinkURI}
+      &lt;/p>
+
+      &lt;p>
+        Description produit: {row.Description}
+      &lt;/p>
+
+      &lt;CreateQRcode url={row.DigitalLinkURI}> &lt;/CreateQRcode>
+    &lt;/div>
+  ),
+  onlyOneExpanding: true,
+};
+const columns = [
+
+  {
+    dataField: "identifier.gtin",
+    text: "GTIN",
+    filter: textFilter(),
+  },
+  {
+    dataField: "keyQualifiers.cpv",
+    text: "cpv",
+    filter: textFilter(),
+  },
+  {
+    dataField: "keyQualifiers.ser",
+    text: "ser",
+    filter: textFilter(),
+  },
+  {
+    dataField: "keyQualifiers.lot",
+    text: "lot",
+    filter: textFilter(),
+    events: {
+      /**
+ 
+* @param filter {string}  data-with list of product
+* @returns list of product with Search param
+
+*/
+      onClick: (e, column, columnIndex) => {
+        console.log(column.dataField);
+      },
+    },
+  },
+  {
+    dataField: "LinkType",
+    text: "LinkType",
+    style: { textAlign: "center" },
+    filter: textFilter(),
+
+  },
+  {
+    dataField: "Description",
+    text: "Description",
+    filter: textFilter(),
+  },
+  {
+    dataField: "DigitalLinkURI",
+    text: "DigitalLink",
+    style: { textAlign: "center" },
+    filter: textFilter(),
+    hidden: true,
+  },
+
+];
+
+/**
+ * Show product table with option search
+ * @param tableshow {state}  data-with list of product
+ * @param CSVLink {methode } print file csv or excel with list of all product
+ * @param paginationFactory {methode} pagination table list 
+ * @param filterFactory {filtre} Search product with gtin cpv ....
+ * 
+
+ */
+class Search extends React.Component {
+  state = {
+    tableshow: [],
+  };
+  /**
+ * Set state table "tableshow" with data url 
+ * @param API_URL {string}  data-with list of product
+ * @returns tableshow {list} data- state
+
+ */
+  componentDidMount() {
+    const url = `${API_URL}`;
+    axios
+      .get(url)
+      .then((response) => response.data)
+      .then((data) => {
+        this.setState({ tableshow: data });
+        console.log(this.state.tableshow);
+      });
+  }
+
+  /**
+ * function render: return virtual dom
+ * @param props {string } include the list of props if that change 
+
+ */
+  render() {
+    return (
+      &lt;ResponsiveContainer>
+        &lt;div className="app-row">
+          &lt;div className="app-col-xs-12 app-col-md-12">
+            &lt;BootstrapTable
+              striped
+              bordered
+              hover
+              variant="dark"
+              expandRow={expandRow}
+              bootstrap4={true}
+              keyField="DigitalLinkURI"
+              data={this.state.tableshow}
+              columns={columns}
+              pagination={paginationFactory({
+                sizePerPage: 15,
+                sizePerPageList: [5, 10, 15, 20, 25],
+              })}
+              filter={filterFactory()}
+            >&lt;/BootstrapTable>
+
+            &lt;CSVLink data={this.state.tableshow}>Download csv&lt;/CSVLink>
+          &lt;/div>
+        &lt;/div>
+      &lt;/ResponsiveContainer>
+    );
+  }
+}
+export default Search;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Add.html">Add</a></li><li><a href="AddspecAtt.html">AddspecAtt</a></li><li><a href="Search.html">Search</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Conditions">Conditions</a></li><li><a href="global.html#CreateQRcode">CreateQRcode</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#url">url</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Nov 01 2020 13:19:14 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

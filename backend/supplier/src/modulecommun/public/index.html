@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RESOLVER PAGE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <!-- <h2>RESOLVER PAGE</h2> -->
+  
+  <ul class="nav nav-pills">
+   <!--  <li class="active"><a data-toggle="pill" href="#home">Home</a></li> -->
+    <li class="active"><a data-toggle="pill" href="#menu1">Product sheet</a></li>
+    <li><a data-toggle="pill" href="#menu2">Traceability</a></li>
+    <li><a data-toggle="pill" href="#menu3">Review</a></li>
+  </ul>
+  
+  <div class="tab-content">
+   <!--  <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>to update.</p>
+    </div> -->  
+    <div id="menu1"  class="tab-pane fade active in">
+     <!--  <h3>Menu 1</h3> -->
+      <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="100%"
+      height="1000"
+    src=<%= url1 %>>
+  </iframe>    </div>
+    <div id="menu2" class="tab-pane fade">
+      <!-- <h3>Menu 2</h3> -->
+      <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="100%"
+      height="1000"
+    src=<%= url2 %>>
+  </iframe>    </div>
+    <div id="menu3" class="tab-pane fade">
+     <!--  <h3>Menu 3</h3> -->
+    <!--  <iframe width="420" height="315"
+     src="https://www.youtube.com/embed/tgbNymZ7vqY">
+     </iframe> -->
+      <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="100%"
+      height="1000"
+    src=<%= url3 %>      
+  </iframe> 
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

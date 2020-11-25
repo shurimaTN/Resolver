@@ -1,0 +1,14 @@
+image: node:10.15.0
+pipelines:
+  default:
+    - step:
+        script:
+          - npm install
+          - npm install ejs
+  branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
+      dev:
+          - step:
+              script:
+                - npm install
+                - npm build
+              trigger: automatic

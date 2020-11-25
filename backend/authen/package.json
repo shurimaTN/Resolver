@@ -1,0 +1,38 @@
+{
+  "name": "node-auth",
+  "version": "1.0.0",
+  "description": "Example authentication app with jwt",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon index",
+    "start": "cross-env NODE_ENV=production node index",
+    "test": "cross-env NODE_ENV=test"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "jwt",
+    "mongodb"
+  ],
+  "author": "Gustavo Morales <gustavo.morales@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "cross-env": "^5.2.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.4.19",
+    "morgan": "^1.9.1",
+    "swagger-jsdoc": "^5.0.0",
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "nodemon": "^1.19.4"
+  }
+}
